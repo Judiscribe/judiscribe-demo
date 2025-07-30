@@ -87,6 +87,10 @@ export default function Impact({ isActive }: ImpactProps) {
 						</p>
 						<ul className="space-y-2 text-gray-600">
 							<li className="flex items-center">
+								<div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
+								Access to 1400+ courts across Nigeria
+							</li>
+							<li className="flex items-center">
 								<div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
 								Reduced transcription costs by up to 80%
 							</li>
@@ -98,6 +102,10 @@ export default function Impact({ isActive }: ImpactProps) {
 								<div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
 								Enhanced accessibility and transparency
 							</li>
+							<li className="flex items-center">
+								<div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
+								Targeting $50M total addressable market
+							</li>
 						</ul>
 					</div>
 
@@ -106,11 +114,9 @@ export default function Impact({ isActive }: ImpactProps) {
 							Projected Annual Savings
 						</h4>
 						<div className="text-center">
-							<div className="text-4xl font-bold text-green-600 mb-2">
-								₦2.5B+
-							</div>
+							<div className="text-4xl font-bold text-green-600 mb-2">$10M</div>
 							<div className="text-gray-600 text-sm">
-								Across Federal Court System
+								Projected Annual Revenue
 							</div>
 						</div>
 						<div className="grid grid-cols-2 gap-4 mt-6">
@@ -119,8 +125,8 @@ export default function Impact({ isActive }: ImpactProps) {
 								<div className="text-xs text-gray-500">Time Reduction</div>
 							</div>
 							<div className="text-center">
-								<div className="text-xl font-semibold text-purple-600">60%</div>
-								<div className="text-xs text-gray-500">Cost Savings</div>
+								<div className="text-xl font-semibold text-purple-600">20%</div>
+								<div className="text-xs text-gray-500">Market Share</div>
 							</div>
 						</div>
 					</div>

@@ -456,7 +456,7 @@ export default function Workflow({ isActive }: WorkflowProps) {
 						{ value: "98%", label: "Time Reduction", color: "blue" },
 						{ value: "99%", label: "Accuracy Rate", color: "emerald" },
 						{ value: "100%", label: "Digital Process", color: "purple" },
-						{ value: "₦2M+", label: "Annual Savings", color: "orange" },
+						{ value: "$50M", label: "Total Addressable Market", color: "orange" },
 					].map((stat, index) => (
 						<div
 							key={index}
