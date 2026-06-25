@@ -1,184 +1,142 @@
 import { impactFeatures, impactStats } from "@/data/features";
+import SectionHeading from "@/components/SectionHeading";
 
 interface ImpactProps {
 	isActive: boolean;
 }
 
+const phases = [
+	{
+		phase: "Phase 1",
+		window: "3–6 months",
+		body: "Pilot in selected Federal High Courts, with recorders and clerks onboarded.",
+	},
+	{
+		phase: "Phase 2",
+		window: "6–12 months",
+		body: "Rollout across the Federal Courts alongside structured training programmes.",
+	},
+	{
+		phase: "Phase 3",
+		window: "12–18 months",
+		body: "Expansion to the State Courts with advanced search and analytics.",
+	},
+];
+
+const roiPoints = [
+	"Access to 1,400+ courts across Nigeria",
+	"Transcription costs reduced by up to 80%",
+	"Faster case resolution and a smaller backlog",
+	"Greater accessibility and transparency of records",
+];
+
 export default function Impact({ isActive }: ImpactProps) {
 	if (!isActive) return null;
 
 	return (
-		<div className="max-w-7xl mx-auto space-y-12">
-			{/* Header Section */}
-			<div className="text-center space-y-4">
-				<h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-					Projected Impact & ROI
-				</h2>
-				<p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-					Measurable improvements across efficiency, cost reduction, and service
-					quality for the Nigerian judicial system
-				</p>
-			</div>
+		<div className="space-y-12">
+			<SectionHeading
+				eyebrow="Impact"
+				title="The case for adoption"
+				lead="Measurable gains in efficiency, cost, and the quality of the record across the Nigerian judicial system."
+			/>
 
-			{/* Key Statistics */}
-			<div className="bg-white rounded-lg border border-gray-200 p-6 md:p-8">
-				<h3 className="text-xl font-semibold text-gray-900 mb-6 text-center">
-					Expected Performance Metrics
-				</h3>
-				<div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-					{impactStats.map((stat, index) => (
-						<div
-							key={index}
-							className="text-center p-4 rounded-lg bg-gray-50 hover:bg-blue-50 transition-colors duration-200"
-						>
-							<div className="text-2xl md:text-3xl font-bold text-blue-600 mb-2">
-								{stat.number}
-							</div>
-							<div className="text-sm md:text-base text-gray-600 font-medium">
-								{stat.label}
-							</div>
+			{/* Key statistics */}
+			<div className="grid grid-cols-2 lg:grid-cols-4 border border-rule rounded-sm divide-x divide-y lg:divide-y-0 divide-rule">
+				{impactStats.map((stat, index) => (
+					<div key={index} className="px-4 py-8 text-center">
+						<div className="font-display text-3xl sm:text-4xl text-ink tabular-nums">
+							{stat.number}
 						</div>
-					))}
-				</div>
+						<div className="eyebrow text-muted mt-2">{stat.label}</div>
+					</div>
+				))}
 			</div>
 
-			{/* Impact Areas */}
-			<div className="space-y-6">
-				<h3 className="text-2xl font-semibold text-gray-900 text-center">
-					Key Impact Areas
-				</h3>
-
-				<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-					{impactFeatures.map((feature, index) => (
-						<div
-							key={index}
-							className="bg-white rounded-lg p-6 border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-300 group"
-						>
-							{/* Icon */}
-							<div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
-								<div className="text-2xl text-blue-600">{feature.icon}</div>
-							</div>
-
-							{/* Title */}
-							<h4 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-blue-800 transition-colors">
+			{/* Impact areas — ledger */}
+			<div className="border-t border-rule">
+				{impactFeatures.map((feature, index) => (
+					<article
+						key={index}
+						className="group grid sm:grid-cols-[auto_auto_1fr] gap-x-6 gap-y-2 items-start py-7 border-b border-rule"
+					>
+						<span className="font-mono text-xs text-muted tabular-nums pt-1">
+							{String(index + 1).padStart(2, "0")}
+						</span>
+						<div className="text-ink-soft group-hover:text-accent transition-colors">
+							{feature.icon}
+						</div>
+						<div className="sm:max-w-2xl">
+							<h3 className="font-display text-xl text-ink mb-1.5">
 								{feature.title}
-							</h4>
-
-							{/* Description */}
-							<p className="text-gray-600 leading-relaxed text-sm md:text-base">
+							</h3>
+							<p className="text-sm sm:text-base text-muted leading-relaxed">
 								{feature.description}
 							</p>
 						</div>
+					</article>
+				))}
+			</div>
+
+			{/* ROI — ink panel */}
+			<div className="bg-ink text-paper rounded-sm grid grid-cols-1 md:grid-cols-2">
+				<div className="p-8 sm:p-10">
+					<span className="eyebrow text-accent-soft">Return on investment</span>
+					<p className="mt-4 text-paper/75 leading-relaxed">
+						Judiscribe is projected to deliver substantial savings through lower
+						administrative overhead, faster case processing, and a more accurate
+						judicial record.
+					</p>
+					<ul className="mt-6 space-y-3">
+						{roiPoints.map((point) => (
+							<li key={point} className="flex items-start gap-3 text-sm text-paper/80">
+								<span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-soft shrink-0" />
+								{point}
+							</li>
+						))}
+					</ul>
+				</div>
+
+				<div className="p-8 sm:p-10 border-t md:border-t-0 md:border-l border-rule-ink flex flex-col justify-center">
+					<span className="eyebrow text-paper/50">Projected annual revenue</span>
+					<div className="font-display text-5xl sm:text-6xl mt-3 tabular-nums">
+						$10M
+					</div>
+					<div className="grid grid-cols-2 gap-6 mt-8 pt-6 border-t border-rule-ink">
+						<div>
+							<div className="font-mono text-2xl text-paper tabular-nums">75%</div>
+							<div className="eyebrow text-paper/50 mt-1">Time reduction</div>
+						</div>
+						<div>
+							<div className="font-mono text-2xl text-paper tabular-nums">20%</div>
+							<div className="eyebrow text-paper/50 mt-1">Target market share</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{/* Roadmap */}
+			<div>
+				<div className="flex items-center gap-3 mb-6">
+					<span className="eyebrow text-ink-soft">Implementation roadmap</span>
+					<span className="h-px flex-1 bg-rule" />
+				</div>
+				<ol className="grid sm:grid-cols-3 gap-px bg-rule border border-rule rounded-sm overflow-hidden">
+					{phases.map((p, index) => (
+						<li key={p.phase} className="bg-paper-raised p-6">
+							<div className="flex items-baseline justify-between">
+								<span className="font-mono text-xs text-accent tabular-nums">
+									{String(index + 1).padStart(2, "0")}
+								</span>
+								<span className="font-mono text-xs text-muted">{p.window}</span>
+							</div>
+							<h4 className="font-display text-lg text-ink mt-3">{p.phase}</h4>
+							<p className="text-sm text-muted leading-relaxed mt-1.5">
+								{p.body}
+							</p>
+						</li>
 					))}
-				</div>
-			</div>
-
-			{/* ROI Summary */}
-			<div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 md:p-8 border border-blue-100">
-				<div className="grid md:grid-cols-2 gap-8 items-center">
-					<div>
-						<h3 className="text-2xl font-bold text-gray-900 mb-4">
-							Return on Investment
-						</h3>
-						<p className="text-gray-700 leading-relaxed mb-4">
-							Implementation of Judiscribe is projected to deliver significant
-							cost savings through reduced administrative overhead, faster case
-							processing, and improved accuracy in judicial documentation.
-						</p>
-						<ul className="space-y-2 text-gray-600">
-							<li className="flex items-center">
-								<div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-								Access to 1400+ courts across Nigeria
-							</li>
-							<li className="flex items-center">
-								<div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-								Reduced transcription costs by up to 80%
-							</li>
-							<li className="flex items-center">
-								<div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-								Faster case resolution and reduced backlog
-							</li>
-							<li className="flex items-center">
-								<div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-								Enhanced accessibility and transparency
-							</li>
-							<li className="flex items-center">
-								<div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-								Targeting $50M total addressable market
-							</li>
-						</ul>
-					</div>
-
-					<div className="bg-white rounded-lg p-6 border border-gray-200">
-						<h4 className="text-lg font-semibold text-gray-900 mb-4 text-center">
-							Projected Annual Savings
-						</h4>
-						<div className="text-center">
-							<div className="text-4xl font-bold text-green-600 mb-2">$10M</div>
-							<div className="text-gray-600 text-sm">
-								Projected Annual Revenue
-							</div>
-						</div>
-						<div className="grid grid-cols-2 gap-4 mt-6">
-							<div className="text-center">
-								<div className="text-xl font-semibold text-blue-600">75%</div>
-								<div className="text-xs text-gray-500">Time Reduction</div>
-							</div>
-							<div className="text-center">
-								<div className="text-xl font-semibold text-purple-600">20%</div>
-								<div className="text-xs text-gray-500">Market Share</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			{/* Implementation Timeline */}
-			<div className="bg-white rounded-lg border border-gray-200 p-6 md:p-8">
-				<h3 className="text-xl font-semibold text-gray-900 mb-6 text-center">
-					Implementation Roadmap
-				</h3>
-
-				<div className="grid sm:grid-cols-3 gap-6">
-					<div className="text-center">
-						<div className="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center mx-auto mb-4 font-bold">
-							1
-						</div>
-						<h4 className="font-semibold text-gray-900 mb-2">Phase 1</h4>
-						<p className="text-sm text-gray-600">
-							Pilot implementation in select Federal High Courts
-						</p>
-						<div className="text-xs text-blue-600 mt-2 font-medium">
-							3-6 months
-						</div>
-					</div>
-
-					<div className="text-center">
-						<div className="w-12 h-12 bg-green-600 text-white rounded-lg flex items-center justify-center mx-auto mb-4 font-bold">
-							2
-						</div>
-						<h4 className="font-semibold text-gray-900 mb-2">Phase 2</h4>
-						<p className="text-sm text-gray-600">
-							Rollout to all Federal Courts and training programs
-						</p>
-						<div className="text-xs text-green-600 mt-2 font-medium">
-							6-12 months
-						</div>
-					</div>
-
-					<div className="text-center">
-						<div className="w-12 h-12 bg-purple-600 text-white rounded-lg flex items-center justify-center mx-auto mb-4 font-bold">
-							3
-						</div>
-						<h4 className="font-semibold text-gray-900 mb-2">Phase 3</h4>
-						<p className="text-sm text-gray-600">
-							Expansion to State Courts and advanced features
-						</p>
-						<div className="text-xs text-purple-600 mt-2 font-medium">
-							12-18 months
-						</div>
-					</div>
-				</div>
+				</ol>
 			</div>
 		</div>
 	);

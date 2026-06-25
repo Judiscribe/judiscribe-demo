@@ -6,147 +6,200 @@ import LiveDemo from "@/components/Demo";
 import Features from "@/components/Features";
 import Workflow from "@/components/Workflow";
 import Impact from "@/components/Impact";
+import Seal from "@/components/Seal";
+
+const navigationItems = [
+	{ id: "live-demo", label: "Live Demo" },
+	{ id: "features", label: "Features" },
+	{ id: "workflow", label: "Workflow" },
+	{ id: "impact", label: "Impact" },
+];
+
+// The transcript thesis shown on the cover — the product is the record,
+// so the record is the hero.
+const coverRecord = [
+	{ time: "10:00:32", speaker: "JUDGE", text: "We are here for the matter of Zenith Bank PLC versus Lagos State Development Corporation." },
+	{ time: "10:01:05", speaker: "PLAINTIFF", text: "May it please your Lordship, I appear for the plaintiff in this contract dispute." },
+	{ time: "10:02:15", speaker: "PLAINTIFF", text: "This case centres on a ₦500 million construction contract signed January 2024." },
+];
 
 export default function Home() {
 	const [activeSection, setActiveSection] = useState("live-demo");
 	const [mounted, setMounted] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-	const navigationItems = [
-		{ id: "live-demo", label: "Live Demo" },
-		{ id: "features", label: "Features" },
-		{ id: "workflow", label: "Workflow" },
-		{ id: "impact", label: "Impact" },
-	];
-
 	useEffect(() => {
 		setMounted(true);
 	}, []);
 
-	const toggleMobileMenu = () => {
-		setIsMobileMenuOpen(!isMobileMenuOpen);
-	};
-
-	if (!mounted) {
-		return null;
-	}
+	if (!mounted) return null;
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-			{/* Header */}
-			<div className="bg-white/80 backdrop-blur-sm border-b border-gray-200/50">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-					<div className="text-center">
-						{/* Enhanced Logo */}
-						<div className="relative mx-auto mb-8 w-16 h-16">
-							<div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl shadow-lg transform rotate-3"></div>
-							<div className="relative w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-xl">
-								<span className="text-3xl md:text-4xl">⚖️</span>
-								<div className="absolute -top-1 -right-1 w-3 h-3 bg-amber-400 rounded-full animate-pulse"></div>
-							</div>
-						</div>
-
-						<h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-900 bg-clip-text text-transparent mb-6">
-							Judiscribe
-						</h1>
-						<p className="text-xl sm:text-2xl text-gray-700 mb-4 font-medium">
-							AI-Powered Court Transcription System
-						</p>
-						<p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
-							Modernizing the Nigerian Judiciary with accurate, real-time
-							transcription and intelligent case documentation
-						</p>
-
-						<div className="flex flex-wrap justify-center gap-3 mt-10">
-							<span className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-shadow">
-								⚡ Real-time Accuracy
-							</span>
-							<span className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-shadow">
-								🤖 AI Summarization
-							</span>
-							<span className="px-6 py-3 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-shadow">
-								🔒 Secure & Compliant
+		<div className="min-h-screen bg-paper overflow-x-clip">
+			{/* Top utility bar — wordmark + nav */}
+			<header className="sticky top-0 z-50 bg-paper/90 backdrop-blur-sm border-b border-rule">
+				<div className="max-w-6xl mx-auto px-5 sm:px-8">
+					<div className="flex items-center justify-between h-16">
+						<div className="flex items-center gap-3">
+							<Seal className="w-8 h-8" tone="ink" />
+							<span className="font-display text-xl tracking-tight text-ink">
+								Judiscribe
 							</span>
 						</div>
+
+						{/* Desktop nav */}
+						<nav className="hidden md:flex items-center gap-8">
+							{navigationItems.map((item) => (
+								<button
+									key={item.id}
+									onClick={() => setActiveSection(item.id)}
+									className={`eyebrow py-1.5 transition-colors border-b ${
+										activeSection === item.id
+											? "text-accent border-accent"
+											: "text-muted border-transparent hover:text-ink"
+									}`}
+								>
+									{item.label}
+								</button>
+							))}
+						</nav>
+
+						{/* Mobile toggle */}
+						<button
+							onClick={() => setIsMobileMenuOpen((v) => !v)}
+							className="md:hidden p-2 -mr-2 text-ink"
+							aria-label="Toggle menu"
+						>
+							{isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+						</button>
 					</div>
+
+					{isMobileMenuOpen && (
+						<nav className="md:hidden border-t border-rule py-2">
+							{navigationItems.map((item) => (
+								<button
+									key={item.id}
+									onClick={() => {
+										setActiveSection(item.id);
+										setIsMobileMenuOpen(false);
+									}}
+									className={`block w-full text-left eyebrow py-3 ${
+										activeSection === item.id ? "text-accent" : "text-muted"
+									}`}
+								>
+									{item.label}
+								</button>
+							))}
+						</nav>
+					)}
 				</div>
-			</div>
+			</header>
 
-			{/* Responsive Navigation */}
-			<div className="bg-white shadow-sm sticky top-0 z-50">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6">
-					{/* Desktop Navigation */}
-					<nav className="hidden md:flex space-x-8 py-4">
-						{navigationItems.map((item) => (
-							<button
-								key={item.id}
-								onClick={() => setActiveSection(item.id)}
-								className={`py-2 px-4 font-medium transition-colors border-b-2 ${
-									activeSection === item.id
-										? "text-blue-600 border-blue-600"
-										: "text-gray-600 border-transparent hover:text-gray-900"
-								}`}
-							>
-								{item.label}
-							</button>
-						))}
-					</nav>
-
-					{/* Mobile Navigation */}
-					<div className="md:hidden">
-						{/* Mobile Header */}
-						<div className="flex items-center justify-between py-4">
-							<div className="font-medium text-gray-900">
-								{navigationItems.find((item) => item.id === activeSection)
-									?.label || "Navigation"}
+			{/* Cover — ink, like the boards of a bound volume */}
+			<section className="bg-ink text-paper">
+				<div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
+					<div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center">
+						{/* Thesis copy */}
+						<div className="min-w-0">
+							<div className="flex items-center gap-3 mb-8">
+								<span className="eyebrow text-accent-soft">
+									Federal Republic of Nigeria
+								</span>
+								<span className="h-px w-8 bg-rule-ink" />
+								<span className="eyebrow text-paper/60">Judiciary</span>
 							</div>
-							<button
-								onClick={toggleMobileMenu}
-								className="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-								aria-label="Toggle menu"
-							>
-								{isMobileMenuOpen ? (
-									<X className="h-6 w-6" />
-								) : (
-									<Menu className="h-6 w-6" />
-								)}
-							</button>
+
+							<h1 className="font-display text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.08] font-medium text-paper">
+								The verbatim record,
+								<br />
+								<span className="text-paper/55">captured as it is spoken.</span>
+							</h1>
+
+							<p className="mt-6 text-base sm:text-lg leading-relaxed text-paper/70 max-w-md">
+								Judiscribe transcribes proceedings in real time, attributes every
+								speaker, and files an accurate, searchable record before the
+								gavel falls.
+							</p>
+
+							<div className="mt-10 flex flex-wrap gap-x-10 gap-y-4">
+								<Stat value="99%" label="Transcription accuracy" />
+								<Stat value="< 1 min" label="Summary after session" />
+								<Stat value="1,400+" label="Courts in scope" />
+							</div>
 						</div>
 
-						{/* Mobile Menu Dropdown */}
-						{isMobileMenuOpen && (
-							<div className="border-t border-gray-200 py-2">
-								<div className="space-y-1">
-									{navigationItems.map((item) => (
-										<button
-											key={item.id}
-											onClick={() => {
-												setActiveSection(item.id);
-												setIsMobileMenuOpen(false);
-											}}
-											className={`block w-full text-left px-4 py-3 font-medium transition-colors ${
-												activeSection === item.id
-													? "text-blue-600 bg-blue-50"
-													: "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-											}`}
-										>
-											{item.label}
-										</button>
+						{/* Document card — the record itself */}
+						<div className="relative min-w-0">
+							<Seal
+								tone="paper"
+								className="hidden lg:block w-20 h-20 absolute -top-10 -right-4 opacity-90"
+							/>
+							<div className="bg-paper-raised text-ink rounded-sm border border-rule-strong shadow-2xl overflow-hidden">
+								<div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-rule">
+									<span className="font-mono text-xs text-ink-soft truncate">
+										FHC/ABJ/CS/123/2025
+									</span>
+									<span className="flex items-center gap-2 eyebrow text-accent shrink-0">
+										<span className="w-1.5 h-1.5 rounded-full bg-accent animate-live" />
+										On record
+									</span>
+								</div>
+								<div className="p-5 space-y-4">
+									{coverRecord.map((line) => (
+										<div key={line.time} className="grid grid-cols-[auto_1fr] gap-x-3 min-w-0">
+											<span className="font-mono text-[11px] text-muted pt-1 tabular-nums">
+												{line.time}
+											</span>
+											<div className="min-w-0">
+												<span className="font-mono text-[10px] tracking-wider text-accent">
+													{line.speaker}
+												</span>
+												<p className="font-mono text-[13px] leading-relaxed text-ink-soft">
+													{line.text}
+												</p>
+											</div>
+										</div>
 									))}
+									<div className="font-mono text-[13px] text-muted pl-[3.4rem]">
+										<span className="inline-block w-2 h-4 bg-accent/70 animate-live align-text-bottom" />
+									</div>
 								</div>
 							</div>
-						)}
+						</div>
 					</div>
 				</div>
-			</div>
+			</section>
 
 			{/* Content */}
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+			<main className="max-w-6xl mx-auto px-5 sm:px-8 py-14 sm:py-20">
 				<LiveDemo isActive={activeSection === "live-demo"} />
 				<Features isActive={activeSection === "features"} />
 				<Workflow isActive={activeSection === "workflow"} />
 				<Impact isActive={activeSection === "impact"} />
+			</main>
+
+			<footer className="border-t border-rule">
+				<div className="max-w-6xl mx-auto px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+					<div className="flex items-center gap-2.5">
+						<Seal className="w-5 h-5" tone="ink" />
+						<span className="font-mono text-xs text-muted">
+							Judiscribe — court transcription for the Nigerian judiciary
+						</span>
+					</div>
+					<span className="font-mono text-xs text-muted">Demo build</span>
+				</div>
+			</footer>
+		</div>
+	);
+}
+
+function Stat({ value, label }: { value: string; label: string }) {
+	return (
+		<div>
+			<div className="font-display text-2xl sm:text-3xl text-paper tabular-nums">
+				{value}
 			</div>
+			<div className="eyebrow text-paper/50 mt-1">{label}</div>
 		</div>
 	);
 }
