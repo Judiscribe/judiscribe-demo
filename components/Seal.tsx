@@ -4,74 +4,37 @@ interface SealProps {
 }
 
 /*
- * The Judiscribe seal — a court stamp rendered as line art.
- * A double ring carrying the wordmark around a pair of scales.
- * This is the page's signature mark; it replaces the emoji logo.
+ * The Judiscribe mark — a gavel poised over an open book.
+ * Rendered as solid shapes so it reads cleanly at any size.
+ * On paper (light surfaces) it carries the blue accent; on the
+ * navy cover it inverts to white for contrast.
  */
 export default function Seal({ className = "", tone = "ink" }: SealProps) {
-	const stroke = tone === "paper" ? "var(--color-paper)" : "var(--color-ink)";
-	const accent = "var(--color-accent)";
+	const fill = tone === "paper" ? "var(--color-paper)" : "var(--color-accent)";
 
 	return (
 		<svg
 			viewBox="0 0 100 100"
 			className={className}
 			role="img"
-			aria-label="Judiscribe seal"
-			fill="none"
+			aria-label="Judiscribe logo"
+			fill={fill}
 		>
-			<circle cx="50" cy="50" r="47" stroke={stroke} strokeWidth="1" />
-			<circle cx="50" cy="50" r="38" stroke={stroke} strokeWidth="0.75" />
-
-			{/* circular wordmark */}
-			<defs>
-				<path
-					id="seal-arc-top"
-					d="M 50 9 A 41 41 0 0 1 50 91"
-					transform="rotate(-90 50 50)"
-				/>
-				<path
-					id="seal-arc-bottom"
-					d="M 50 91 A 41 41 0 0 1 50 9"
-					transform="rotate(90 50 50)"
-				/>
-			</defs>
-			<text
-				fill={stroke}
-				style={{
-					fontFamily: "var(--font-mono)",
-					fontSize: "7px",
-					letterSpacing: "3.5px",
-				}}
-			>
-				<textPath href="#seal-arc-top" startOffset="50%" textAnchor="middle">
-					JUDISCRIBE
-				</textPath>
-			</text>
-			<text
-				fill={stroke}
-				style={{
-					fontFamily: "var(--font-mono)",
-					fontSize: "7px",
-					letterSpacing: "3.5px",
-				}}
-			>
-				<textPath href="#seal-arc-bottom" startOffset="50%" textAnchor="middle">
-					DE JURE
-				</textPath>
-			</text>
-
-			{/* scales of justice, centered */}
-			<g stroke={stroke} strokeWidth="1.4" strokeLinecap="round">
-				<line x1="50" y1="34" x2="50" y2="66" />
-				<line x1="34" y1="40" x2="66" y2="40" />
-				<line x1="44" y1="66" x2="56" y2="66" />
-				{/* left pan */}
-				<path d="M 34 40 L 29 52 L 39 52 Z" fill="none" />
-				{/* right pan */}
-				<path d="M 66 40 L 61 52 L 71 52 Z" fill="none" />
+			{/* Gavel — head poised over the book, handle to the lower right */}
+			<g transform="rotate(-32 50 36)">
+				{/* striking face cap (left band) */}
+				<rect x="30" y="23" width="6.5" height="22" rx="3.25" />
+				{/* barrel / head */}
+				<rect x="35" y="27" width="30" height="14" rx="7" />
+				{/* opposite cap (right band) */}
+				<rect x="63.5" y="23" width="6.5" height="22" rx="3.25" />
+				{/* handle */}
+				<rect x="46" y="40" width="8" height="32" rx="4" />
 			</g>
-			<circle cx="50" cy="33" r="2" fill={accent} stroke="none" />
+
+			{/* Open book — two pages fanned from a central spine */}
+			<path d="M 50 64 C 36 57, 22 55, 11 58 L 11 67 C 22 64, 36 66, 50 76 Z" />
+			<path d="M 50 64 C 64 57, 78 55, 89 58 L 89 67 C 78 64, 64 66, 50 76 Z" />
 		</svg>
 	);
 }

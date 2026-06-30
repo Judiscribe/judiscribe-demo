@@ -9,17 +9,17 @@ const phases = [
 	{
 		phase: "Phase 1",
 		window: "3–6 months",
-		body: "Pilot in selected Federal High Courts, with recorders and clerks onboarded.",
+		body: "Establish a partnership with the Lagos State Government and test the prototype in 3 Lagos State courts after equipping them with the hardware and software infrastructure.",
 	},
 	{
 		phase: "Phase 2",
 		window: "6–12 months",
-		body: "Rollout across the Federal Courts alongside structured training programmes.",
+		body: "Roll out across 10+ courts nationwide alongside structured training programmes for clerks.",
 	},
 	{
 		phase: "Phase 3",
 		window: "12–18 months",
-		body: "Expansion to the State Courts with advanced search and analytics.",
+		body: "Expand into the South West — partnering with Ekiti, Ogun and Oyo States — to onboard their courts with advanced search analytics and improved infrastructure.",
 	},
 ];
 

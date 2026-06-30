@@ -2,22 +2,22 @@
 
 /*
   Judiscribe — institutional design system.
-  The look is a digitized legal instrument: warm paper, deep ink,
-  one oxblood accent reserved for the live record, and a monospace
+  The look is a clean digital court record: white page, deep navy ink,
+  one clear blue accent reserved for the live record, and a monospace
   face that treats the transcript as the official artifact it is.
 */
 
 @theme {
-	--color-paper: #efe9db; /* warm bone — the page */
-	--color-paper-raised: #faf7f0; /* card / document surface */
-	--color-ink: #1a2230; /* near-black navy — primary text & cover */
-	--color-ink-soft: #3a4452; /* secondary ink on paper */
-	--color-muted: #6f6a5c; /* captions, meta */
-	--color-rule: #d8d0bf; /* hairlines on paper */
-	--color-rule-strong: #c0b7a2;
-	--color-rule-ink: #2c3543; /* hairlines on ink cover */
-	--color-accent: #7c2a2a; /* oxblood — the single accent */
-	--color-accent-soft: #9a3b3b;
+	--color-paper: #ffffff; /* white — the page */
+	--color-paper-raised: #f4f8ff; /* card / document surface */
+	--color-ink: #102a43; /* deep navy — primary text & cover */
+	--color-ink-soft: #334e68; /* secondary ink on paper */
+	--color-muted: #627d98; /* captions, meta — blue-gray */
+	--color-rule: #d9e2ec; /* hairlines on paper */
+	--color-rule-strong: #bcccdc;
+	--color-rule-ink: #1f3a5f; /* hairlines on navy cover */
+	--color-accent: #2196f3; /* clear blue — the single accent */
+	--color-accent-soft: #64b5f6;
 
 	--font-display: var(--font-display), Georgia, "Times New Roman", serif;
 	--font-sans: var(--font-geist-sans), system-ui, sans-serif;
